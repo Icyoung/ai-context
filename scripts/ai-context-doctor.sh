@@ -41,6 +41,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "=== ai-context doctor ==="
+echo "Reminder: If you provide evaluation/recommendation/plan, write a decision before replying."
 
 if [[ "$MODE" == "project" ]]; then
   if [[ -z "$PROJECT_PATH" ]]; then

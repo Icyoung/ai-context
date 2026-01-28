@@ -12,6 +12,9 @@ description: |
 
 Fast context check for daily use. Run at session start or anytime.
 
+Pre-flight reminder:
+- If the user is asking for evaluation/recommendation/plan, write a decision before replying.
+
 ## Workflow
 
 ### 1. Verify structure exists
