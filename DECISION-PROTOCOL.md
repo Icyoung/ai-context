@@ -45,9 +45,9 @@ Do **not** write a decision for:
 ## Where Decisions Live
 
 - **Never** write decisions to global `~/.ai-context/` (global = law).
-- Always write decisions to the project-local log:
-  - `<project>/.ai-context/DECISIONS/`
-  - For this repo (the protocol repo), that is: `.ai-context/DECISIONS/`
+- Write decisions to a Git-tracked decision log:
+  - **Project repos**: `<project>/.ai-context/DECISIONS/` (project-local truth)
+  - **Protocol repo (this repo)**: `DECISIONS/` (protocol evolution log)
 
 ## Rules
 

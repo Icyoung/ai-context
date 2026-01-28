@@ -22,6 +22,13 @@ ln -s /path/to/ai-context ~/.ai-context/protocol
 # Run "init ai-context" in Claude Code / Codex
 ```
 
+Recommended install (Git working copy):
+
+```bash
+git clone https://github.com/Icyoung/ai-context.git ~/.ai-context/protocol
+cd ~/.ai-context/protocol && git pull --ff-only
+```
+
 ## Architecture
 
 ### Global: `~/.ai-context/protocol/` (read-only)
@@ -56,7 +63,7 @@ ai-context/                 # This repo
 ├── UI/                     # AI behavior constraint
 ├── ICONS/                  # Icon library for AI
 ├── SKILLS/                 # ai-context-init skill
-└── .ai-context/            # This repo's own context (incl. decision log)
+└── DECISIONS/              # Protocol evolution log (versioned)
 ```
 
 ## For AI Agents
@@ -73,6 +80,6 @@ ai-context/                 # This repo
 # protocol repo
 bash scripts/ai-context-lint.sh
 
-# this repo's own project-local context
-bash scripts/ai-context-lint.sh --project .ai-context
+# project-local context (in a real project repo)
+bash scripts/ai-context-lint.sh --project <path-to-project-ai-context>
 ```

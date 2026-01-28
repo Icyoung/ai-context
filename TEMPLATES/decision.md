@@ -1,3 +1,6 @@
+---
+status: open
+---
 # DECISION XXXX: <Title>
 
 Date:

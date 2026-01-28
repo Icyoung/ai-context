@@ -56,14 +56,19 @@ lint_protocol_repo() {
   check_file DECISION-PROTOCOL.md
   check_file CONTEXT-STRUCTURE.md
   check_file HANDOFF.md
+  check_file .gitignore
 
   check_dir UI
   check_dir ICONS
 
-  # This repo is also a project; protocol changes must be recorded in its project-local context.
-  check_dir .ai-context
-  check_dir .ai-context/DECISIONS
-  check_any_glob ".ai-context/DECISIONS/0001-*.md"
+  # Protocol repo is distributable; it should not ship a project-local .ai-context/.
+  # Protocol evolution remains audit-able via a repo-level decision log.
+  check_dir DECISIONS
+  check_any_glob "DECISIONS/0001-*.md"
+
+  if ! grep -qE '^[[:space:]]*\.ai-context/([[:space:]]*(#.*)?)?$' .gitignore; then
+    fail ".gitignore must ignore .ai-context/ for the protocol repo"
+  fi
 
   if ! grep -qi 'UI/' SYSTEM.md || ! grep -qi 'ICONS/' SYSTEM.md || ! grep -qi 'canonical' SYSTEM.md; then
     fail "SYSTEM.md must explicitly state that UI/ and ICONS/ are canonical protocol context"
