@@ -61,13 +61,16 @@ lint_protocol_repo() {
   check_dir UI
   check_dir ICONS
 
-  # Protocol repo is distributable; it should not ship a project-local .ai-context/.
-  # Protocol evolution remains audit-able via a repo-level decision log.
-  check_dir DECISIONS
-  check_any_glob "DECISIONS/0001-*.md"
-
+  # This repo is the protocol itself; project-local truth (including decisions) must live in .ai-context/,
+  # and should not be shipped as part of the protocol distribution.
   if ! grep -qE '^[[:space:]]*\.ai-context/([[:space:]]*(#.*)?)?$' .gitignore; then
-    fail ".gitignore must ignore .ai-context/ for the protocol repo"
+    fail ".gitignore must ignore .ai-context/ (project-local truth) for the protocol repo"
+  fi
+
+  # This repo is the protocol itself. Decisions belong to project-local truth, not protocol law.
+  # Do not require a repo-level DECISIONS/ directory here.
+  if [[ -d "DECISIONS" ]]; then
+    fail "Protocol repo should not have a root DECISIONS/ directory; use .ai-context/DECISIONS/ instead"
   fi
 
   if ! grep -qi 'UI/' SYSTEM.md || ! grep -qi 'ICONS/' SYSTEM.md || ! grep -qi 'canonical' SYSTEM.md; then

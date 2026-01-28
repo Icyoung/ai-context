@@ -54,7 +54,7 @@ if [[ "$MODE" == "project" ]]; then
 else
   echo "Mode: protocol"
   bash scripts/ai-context-lint.sh
-  bash scripts/ai-context-decisions.sh -n 1 -d DECISIONS >/dev/null
+  bash scripts/ai-context-decisions.sh -n 1 >/dev/null 2>&1 || true
 fi
 
 if [[ ! -d "${HOME}/.ai-context/protocol" ]]; then

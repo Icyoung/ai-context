@@ -16,11 +16,7 @@ Fast context check for daily use. Run at session start or anytime.
 
 ### 1. Verify structure exists
 
-Check a decision log exists:
-- Project repos: `.ai-context/`
-- Protocol repo: `DECISIONS/`
-
-If neither exists, tell user to run `ai-context-init` (for project repos) or install the protocol repo (for protocol usage).
+Check `.ai-context/` exists. If missing, tell user to run `ai-context-init`.
 
 ### 2. List all decisions
 
@@ -54,6 +50,36 @@ Latest open: DECISION XXXX: <title>
 
 Status: Ready ✓
 ```
+
+## Handling Open Decisions
+
+When there are open decisions, you MUST:
+
+### 1. Read and understand
+- Read the full content of each open decision
+- Understand what other agents decided
+- This is "syncing their memory to yours"
+
+### 2. Check if action needed
+- Does the decision require implementation?
+- Is something already done that needs verification?
+- Are there implications you need to follow?
+
+### 3. Execute if needed
+- If the decision requires action, do it first
+- Verify the action was successful
+
+### 4. Then resolve
+Only after understanding and completing any required actions:
+```yaml
+---
+status: resolved
+resolved_by: <your-agent-name>
+resolved_at: <date>
+---
+```
+
+**NEVER resolve blindly.** Reading the title is not enough.
 
 ## Notes
 

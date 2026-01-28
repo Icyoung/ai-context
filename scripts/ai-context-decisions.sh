@@ -11,9 +11,7 @@ ai-context-decisions.sh
 Show recent decisions from a decision log directory.
 
 Default behavior:
-  - If .ai-context/DECISIONS/ exists, use it (project repos)
-  - Else if DECISIONS/ exists, use it (protocol repo)
-  - Else default to .ai-context/DECISIONS/
+  - Use .ai-context/DECISIONS/ (project-local decision log)
 
 Usage:
   bash scripts/ai-context-decisions.sh [options]
@@ -76,15 +74,9 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Auto-detect default decisions directory if none specified
+# Default decisions directory
 if [[ -z "${DECISIONS_DIR}" ]]; then
-  if [[ -d ".ai-context/DECISIONS" ]]; then
-    DECISIONS_DIR=".ai-context/DECISIONS"
-  elif [[ -d "DECISIONS" ]]; then
-    DECISIONS_DIR="DECISIONS"
-  else
-    DECISIONS_DIR=".ai-context/DECISIONS"
-  fi
+  DECISIONS_DIR=".ai-context/DECISIONS"
 fi
 
 # Extract status from frontmatter (defaults to "open" if no frontmatter)
@@ -111,7 +103,7 @@ matches_status() {
 
 if [[ ! -d "$DECISIONS_DIR" ]]; then
   echo "No decisions directory found at $DECISIONS_DIR" >&2
-  exit 1
+  exit 0
 fi
 
 # Get sorted decision files (newest first by filename)

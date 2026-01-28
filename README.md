@@ -2,6 +2,18 @@
 
 A collaboration protocol that constrains AI behavior through explicit, versioned files.
 
+## Why
+
+AI coding agents (Claude Code, Codex, Cursor, etc.) have two fundamental problems:
+
+1. **No shared memory** — Decisions made in one session are invisible to other agents or future sessions. Each agent starts fresh, repeating mistakes or contradicting prior work.
+
+2. **Weak aesthetics** — AI-generated UI tends toward a generic "AI look" (over-rounded corners, gratuitous gradients, decorative animations). AI-generated icons are often inconsistent or low quality.
+
+This protocol solves both:
+- **Decisions as files** — Persistent, versioned, reviewable. All agents read the same truth.
+- **UI/ICONS constraints** — Reference libraries and anti-patterns to raise visual quality.
+
 ## Core Principle
 
 ```
@@ -63,7 +75,7 @@ ai-context/                 # This repo
 ├── UI/                     # AI behavior constraint
 ├── ICONS/                  # Icon library for AI
 ├── SKILLS/                 # ai-context-init skill
-└── DECISIONS/              # Protocol evolution log (versioned)
+└── .ai-context/            # Local project context for this repo (ignored; not part of protocol distribution)
 ```
 
 ## For AI Agents
